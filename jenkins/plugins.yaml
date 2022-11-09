@@ -1,0 +1,7 @@
+plugins:
+  - artifactId: docker-workflow
+    source:
+      version: latest
+  - artifactId: blueocean
+    source:
+      version: 1.25.8

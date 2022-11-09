@@ -29,7 +29,8 @@ services:
 
   jenkins:
     container_name: jenkins-blueocean
-    image: jenkinsci/blueocean
+    build:
+      context: .
     restart: unless-stopped
     networks:
       - jenkins-network
