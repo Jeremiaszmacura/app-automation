@@ -28,7 +28,8 @@ services:
       - DOCKER_TLS_CERTDIR=/certs
 
   jenkins:
-    container_name: jenkins-blueocean
+    container_name: jenkins-dind-blueocean
+    image: jenkins-dind-blueocean
     build:
       context: .
     restart: unless-stopped
