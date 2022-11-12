@@ -45,3 +45,15 @@ services:
       - DOCKER_HOST=tcp://docker:2376
       - DOCKER_CERT_PATH=/certs/client
       - DOCKER_TLS_VERIFY=1
+
+  ngrok:
+    container_name: ngrok
+    image: ngrok/ngrok
+    ports:
+      - "4040:4040"
+    networks:
+      - jenkins-network
+    env_file: .env
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    command: ["http", "jenkins:8080"]

@@ -1,6 +1,6 @@
 <hr />
 
-## Build and run jenkins from docker-compose
+## Build and run jenkins from docker-compose witj public ip adress using ngrok
 
 <hr />
 
@@ -24,6 +24,29 @@ docker-compose down
 
 ```sh
 docker volume rm jenkins-data jenkins-docker-certs
+```
+
+<br />
+<hr />
+
+## To use Github webhook with Jenkins as localhost use ngrok:
+
+Linux - run ngrok container to map localhost:8080 to ip adress
+
+```sh
+docker run -it -e NGROK_AUTHTOKEN=<token> ngrok/ngrok http localhost:8080
+```
+
+Windows/MacOS - run ngrok container to map host.docker.internal:8080 to ip adress
+
+```sh
+docker run -it -e NGROK_AUTHTOKEN=<token> ngrok/ngrok http host.docker.internal:8080
+```
+
+TO get new created ip adress go to
+
+```text
+http://localhost:4040
 ```
 
 <br />
