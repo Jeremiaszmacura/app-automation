@@ -12,21 +12,6 @@ volumes:
 
 services:
 
-  # dind:
-  #   container_name: jenkins-docker
-  #   image: docker:dind
-  #   privileged: true
-  #   restart: unless-stopped
-  #   networks:
-  #     jenkins-network:
-  #       aliases:
-  #         - docker
-  #   volumes:
-  #     - data:/var/jenkins_home
-  #     - certs:/certs/client
-  #   environment:
-  #     - DOCKER_TLS_CERTDIR=/certs
-
   jenkins:
     container_name: jenkins-dood-blueocean
     image: jenkins-dood-blueocean
@@ -46,3 +31,15 @@ services:
       - DOCKER_HOST=tcp://docker:2376
       - DOCKER_CERT_PATH=/certs/client
       - DOCKER_TLS_VERIFY=1
+
+  ngrok:
+    container_name: ngrok
+    image: ngrok/ngrok
+    ports:
+      - "4040:4040"
+    networks:
+      - jenkins-network
+    env_file: .env
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    command: ["http", "jenkins:8080"]

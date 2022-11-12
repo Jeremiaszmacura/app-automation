@@ -7,7 +7,12 @@ pipeline {
   stages {
     stage('Do job stage') {
       steps {
-        sh "python --version"
+        sh """
+        python --version
+        scho sleep_start
+        sleep 20
+        echo stop_stop
+        """
       }
     }
   }
