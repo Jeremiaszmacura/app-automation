@@ -7,14 +7,14 @@ networks:
 volumes:
   data:
     name: jenkins-data
-  certs:
-    name: jenkins-docker-certs
 
 services:
 
   jenkins:
     container_name: jenkins-dood-blueocean
     image: jenkins-dood-blueocean
+    privileged: true
+    user: root
     build:
       context: .
     restart: unless-stopped
@@ -25,12 +25,8 @@ services:
       - 50000:50000
     volumes:
       - data:/var/jenkins_home
-      - certs:/certs/client:ro
+      - /usr/local/bin/docker:/usr/local/bin/docker
       - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      - DOCKER_HOST=tcp://docker:2376
-      - DOCKER_CERT_PATH=/certs/client
-      - DOCKER_TLS_VERIFY=1
 
   ngrok:
     container_name: ngrok

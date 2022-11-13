@@ -9,8 +9,8 @@ pipeline {
       steps {
         sh """
         python --version
-        scho sleep_start
-        sleep 20
+        echo sleep_start
+        sleep 10
         echo stop_stop
         """
       }
